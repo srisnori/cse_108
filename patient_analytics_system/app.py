@@ -13,8 +13,7 @@ app = Flask(
     static_folder="static",
 )
 
-app.secret_key = "super_secret_key_123"
-
+app.secret_key = os.environ.get("SECRET_KEY", "dev_fallback_key")
 
 # -------------------------------
 # DB CONNECTION
