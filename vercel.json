@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "patient_analytics_system/app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "patient_analytics_system/app.py"
+    }
+  ]
+}
