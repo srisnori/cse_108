@@ -1082,6 +1082,36 @@ def analytics():
     )
 
 
+# doctor register
+@app.route("/doctor/register", methods=["GET", "POST"])
+def doctor_register():
+    if request.method == "POST":
+        name = request.form["name"]
+        email = request.form["email"]
+        password = request.form["password"]
+
+        password_hash = hash_password(password)
+
+        conn = sqlite3.connect("healthcare_analytics.sqlite")
+        cursor = conn.cursor()
+
+        try:
+            cursor.execute(
+                "INSERT INTO doctors (name, email, password_hash) VALUES (?, ?, ?)",
+                (name, email, password_hash)
+            )
+            conn.commit()
+        except sqlite3.IntegrityError:
+            conn.close()
+            flash("Email already exists")
+            return redirect("/doctor/register")
+
+        conn.close()
+        return redirect("/doctor/login")
+
+    return render_template("doctor_register.html")
+
+
 
 # -------------------------------
 # LOGOUT
@@ -1094,3 +1124,5 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
