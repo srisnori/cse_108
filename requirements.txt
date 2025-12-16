@@ -5,7 +5,5 @@ gunicorn==23.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.3
-numpy==2.3.5
 packaging==25.0
-scipy==1.16.3
 Werkzeug==3.1.4
