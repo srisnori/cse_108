@@ -129,6 +129,13 @@ CREATE TABLE MedicationCondition (
     FOREIGN KEY (condition_id)  REFERENCES "Condition"(condition_id)
 );
 
+CREATE TABLE RegisterDoctors (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL
+);
+
 ------------------------------------------------
 -- SAMPLE DATA
 ------------------------------------------------
